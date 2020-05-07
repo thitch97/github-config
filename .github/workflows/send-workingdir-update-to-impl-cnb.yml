@@ -36,6 +36,6 @@ jobs:
           {
             "commit": "${{ env.CURR_HEAD }}",
             "pathmap": {
-              "/implementation": "/",
+              "/implementation": "/"
             }
           }
