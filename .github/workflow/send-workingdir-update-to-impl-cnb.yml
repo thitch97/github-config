@@ -5,6 +5,8 @@ name: Send Working Dir Dispatch to Implementation CNB repos
 
 on:
   push:
+    branches:
+      - master
     # paths:
     # - 'implementation/**'
 
