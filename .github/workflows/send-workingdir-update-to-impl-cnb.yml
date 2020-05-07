@@ -30,7 +30,7 @@ jobs:
       uses: paketo-buildpacks/github-config/actions/dispatch@master
       with:
         repos: thitch97/node-engine
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.token }}
         event: working-dir-update
         payload: |
           {
