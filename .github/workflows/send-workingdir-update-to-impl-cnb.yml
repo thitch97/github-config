@@ -22,8 +22,8 @@ jobs:
 
     # TODO see if there's a {{ github.HEAD }} or something
     - run: |
-      CURR_HEAD="$(git rev-parse HEAD)"
-      echo "::set-env name=CURR_HEAD::$CURR_HEAD"
+        CURR_HEAD="$(git rev-parse HEAD)"
+        echo "::set-env name=CURR_HEAD::$CURR_HEAD"
 
     # Generic repository dispatch sender.
     - name: Send Repository Dispatch
