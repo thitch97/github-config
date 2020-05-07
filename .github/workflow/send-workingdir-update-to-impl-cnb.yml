@@ -1,0 +1,39 @@
+# This workflow triggers on a git-push to github-config
+# that affects the path /implementation/**
+
+name: Send Working Dir Dispatch to Implementation CNB repos
+
+on:
+  push:
+    paths:
+    - 'implementation/**'
+
+jobs:
+
+  dispatch:
+    runs-on: ubuntu-latest
+    name: Send Dispatch
+    steps:
+
+    - name: Check out
+      uses: actions/checkout@v2
+
+    # TODO see if there's a {{ github.HEAD }} or something
+    - run: |
+      CURR_HEAD="$(git rev-parse HEAD)"
+      echo "::set-env name=CURR_HEAD::$CURR_HEAD"
+
+    # Generic repository dispatch sender.
+    - name: Send Repository Dispatch
+      uses: paketo-buildpacks/github-config/actions/dispatch@master
+      with:
+        repos: thitch97/node-engine
+        token: ${{ secrets.GITHUB_TOKEN }}
+        event: working-dir-update
+        payload: |
+          {
+            "commit": "${{ env.CURR_HEAD }}",
+            "pathmap": {
+              "/implementation": "/",
+            }
+          }
