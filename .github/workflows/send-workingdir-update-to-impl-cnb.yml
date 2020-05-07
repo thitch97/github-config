@@ -35,7 +35,6 @@ jobs:
         payload: |
           {
             "commit": "${{ env.CURR_HEAD }}",
-            "pathmap": {
-              "/implementation": "/"
-            }
+            "srcpath": "/implementation",
+            "dstpath": "/"
           }
